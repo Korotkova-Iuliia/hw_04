@@ -1265,8 +1265,91 @@
 // console.log(getUsersWithEyeColor(users, 'brown'));
 // console.log(getUsersWithEyeColor(users, 'blue'));
 
-// 23
-// Задача. Пользователи в возрастной категории
+// // 23
+// // Задача. Пользователи в возрастной категории
+// const users = [
+//   {
+//     name: 'Moore Hensley',
+//     email: 'moorehensley@indexia.com',
+//     eyeColor: 'blue',
+//     friends: ['Sharron Pace'],
+//     isActive: false,
+//     balance: 2811,
+//     gender: 'male',
+//     age: 37,
+//   },
+//   {
+//     name: 'Sharlene Bush',
+//     email: 'sharlenebush@tubesys.com',
+//     eyeColor: 'blue',
+//     friends: ['Briana Decker', 'Sharron Pace'],
+//     isActive: true,
+//     balance: 3821,
+//     gender: 'female',
+//     age: 34,
+//   },
+//   {
+//     name: 'Ross Vazquez',
+//     email: 'rossvazquez@xinware.com',
+//     eyeColor: 'green',
+//     friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//     isActive: false,
+//     balance: 3793,
+//     gender: 'male',
+//     age: 24,
+//   },
+//   {
+//     name: 'Elma Head',
+//     email: 'elmahead@omatom.com',
+//     eyeColor: 'green',
+//     friends: ['Goldie Gentry', 'Aisha Tran'],
+//     isActive: true,
+//     balance: 2278,
+//     gender: 'female',
+//     age: 21,
+//   },
+//   {
+//     name: 'Carey Barr',
+//     email: 'careybarr@nurali.com',
+//     eyeColor: 'blue',
+//     friends: ['Jordan Sampson', 'Eddie Strong'],
+//     isActive: true,
+//     balance: 3951,
+//     gender: 'male',
+//     age: 27,
+//   },
+//   {
+//     name: 'Blackburn Dotson',
+//     email: 'blackburndotson@furnigeer.com',
+//     eyeColor: 'brown',
+//     friends: ['Jacklyn Lucas', 'Linda Chapman'],
+//     isActive: false,
+//     balance: 1498,
+//     gender: 'male',
+//     age: 38,
+//   },
+//   {
+//     name: 'Sheree Anthony',
+//     email: 'shereeanthony@kog.com',
+//     eyeColor: 'brown',
+//     friends: ['Goldie Gentry', 'Briana Decker'],
+//     isActive: true,
+//     balance: 2764,
+//     gender: 'female',
+//     age: 39,
+//   },
+// ];
+
+// // Change code below this line
+// const getUsersWithAge = (users, minAge, maxAge) => users.filter((user) => (minAge < user.age) & (user.age < maxAge));
+
+//   console.log(Age);
+
+// console.log(getUsersWithAge(users, 20, 30));
+// getUsersWithAge(users, 20, 30);
+
+// 24
+// Задача. Пользователи с другом
 const users = [
   {
     name: 'Moore Hensley',
@@ -1340,18 +1423,35 @@ const users = [
   },
 ];
 
-// Change code below this line
-const getUsersWithAge = (users, minAge, maxAge) => {
-  const Age = users.filter((user) => minAge < user.age < maxAge);
-  getUsersWithAge(users, 20, 30);
-  // const eyesColorArray = users.filter((user) => user.eyeColor === color);
-  //   return eyesColorArray;
+const getUsersWithFriend = (users, friendName) => {
+  const friendObject = users.filter((user) =>
+    flatMap(user.friends === friendName)
+  );
+  console.log(friendObject);
+  // const consistFriend = friendObject.flatMap((friend) => friend === friendName);
+  // console.log(friendObject);
+  // return consistFriend;
 };
+console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+// const getUsersWithFriend = (users, friendName) => {
+//   const friendObject = users.filter((user) => user.friends);
+//   console.log(friendObject);
 
-// Change code above this line
-// const topRatedBooks = books.filter((book) => book.rating >= MIN_RATING);
-// console.log(topRatedBooks);
-// const booksByAuthor = books.filter(
-//   (book) => book.author === 'Bernard Cornwell'
-// );
-// console.log(booksByAuthor);
+//   const consistfriend = friendObject.map(
+//     (friend) => friendObject.friend === friendName
+//   );
+//   // console.log(friendObject);
+//   return consistfriend;
+// };
+// console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+// Задание
+// Дополни функцию getUsersWithFriend(users, friendName) так, чтобы она возвращала массив пользователей у которых есть друг с именем в параметре friendName. Массив друзей пользователя хранится в свойстве friends.
+
+// Тесты
+// Объявлена переменная getUsersWithFriend
+// Переменной getUsersWithFriend присвоена стрелочная функция с параметрами (users, friendName)
+// Для перебора параметра users используется метод filter()
+// Если значение параметра friendName это строка "Briana Decker", функция возвращает массив объектов пользователей с именами Sharlene Bush и Sheree Anthony
+// Если значение параметра friendName это строка "Goldie Gentry", функция возвращает массив объектов пользователей с именами Elma Head и Sheree Anthony
+// Если значение параметра friendName это строка "Adrian Cross", функция возвращает пустой массив
+// Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
