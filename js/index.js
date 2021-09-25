@@ -1422,36 +1422,12 @@ const users = [
     age: 39,
   },
 ];
-
 const getUsersWithFriend = (users, friendName) => {
-  const friendObject = users.filter((user) =>
-    flatMap(user.friends === friendName)
+  const consistFriend = users.filter((user) =>
+    user.friends.includes(friendName)
   );
-  console.log(friendObject);
-  // const consistFriend = friendObject.flatMap((friend) => friend === friendName);
-  // console.log(friendObject);
-  // return consistFriend;
+
+  return consistFriend;
 };
-console.log(getUsersWithFriend(users, 'Goldie Gentry'));
-// const getUsersWithFriend = (users, friendName) => {
-//   const friendObject = users.filter((user) => user.friends);
-//   console.log(friendObject);
 
-//   const consistfriend = friendObject.map(
-//     (friend) => friendObject.friend === friendName
-//   );
-//   // console.log(friendObject);
-//   return consistfriend;
-// };
-// console.log(getUsersWithFriend(users, 'Goldie Gentry'));
-// Задание
-// Дополни функцию getUsersWithFriend(users, friendName) так, чтобы она возвращала массив пользователей у которых есть друг с именем в параметре friendName. Массив друзей пользователя хранится в свойстве friends.
-
-// Тесты
-// Объявлена переменная getUsersWithFriend
-// Переменной getUsersWithFriend присвоена стрелочная функция с параметрами (users, friendName)
-// Для перебора параметра users используется метод filter()
-// Если значение параметра friendName это строка "Briana Decker", функция возвращает массив объектов пользователей с именами Sharlene Bush и Sheree Anthony
-// Если значение параметра friendName это строка "Goldie Gentry", функция возвращает массив объектов пользователей с именами Elma Head и Sheree Anthony
-// Если значение параметра friendName это строка "Adrian Cross", функция возвращает пустой массив
-// Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
+console.log(getUsersWithFriend(users, 'Marilyn Mcintosh'));
