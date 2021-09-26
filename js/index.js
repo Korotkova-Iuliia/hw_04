@@ -2239,13 +2239,13 @@ const users = [
 // // Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
 // // Для перебора параметра users использован метод sort()
 
-const sortByDescendingFriendCount = (users) =>
-  [...users].sort(
-    (minFriends, maxFriends) =>
-      maxFriends.friends.length - minFriends.friends.length
-  );
+// const sortByDescendingFriendCount = (users) =>
+//   [...users].sort(
+//     (minFriends, maxFriends) =>
+//       maxFriends.friends.length - minFriends.friends.length
+//   );
 
-console.log(sortByDescendingFriendCount(users));
+// console.log(sortByDescendingFriendCount(users));
 
 // // 44
 // // Задача. Сортировка по имени
@@ -2267,62 +2267,62 @@ console.log(sortByDescendingFriendCount(users));
 //   );
 // console.log(sortByName(users));
 
-// 45
-// Цепочки методов (чейнинг, chaining)
-// Есть массив объектов с именами, баллами и посещаемыми предметами каждого студента.
+// // 45
+// // Цепочки методов (чейнинг, chaining)
+// // Есть массив объектов с именами, баллами и посещаемыми предметами каждого студента.
 
-// const students = [
-//   { name: "Mango", score: 83, courses: ["mathematics", "physics"] },
-//   { name: "Poly", score: 59, courses: ["science", "mathematics"] },
-//   { name: "Ajax", score: 37, courses: ["physics", "biology"] },
-//   { name: "Kiwi", score: 94, courses: ["literature", "science"] },
-// ];
-// Необходимо получить массив их имён отсортированный по возрастанию баллов за тест. Для этого мы отсортируем копию массива методом sort(), после чего методом map() составим массив значений свойства name из сортированного массива.
+// // const students = [
+// //   { name: "Mango", score: 83, courses: ["mathematics", "physics"] },
+// //   { name: "Poly", score: 59, courses: ["science", "mathematics"] },
+// //   { name: "Ajax", score: 37, courses: ["physics", "biology"] },
+// //   { name: "Kiwi", score: 94, courses: ["literature", "science"] },
+// // ];
+// // Необходимо получить массив их имён отсортированный по возрастанию баллов за тест. Для этого мы отсортируем копию массива методом sort(), после чего методом map() составим массив значений свойства name из сортированного массива.
 
-// const sortedByAscendingScore = [...students].sort((a, b) => a.score - b.score);
-// const names = sortedByAscendingScore.map(student => student.name);
+// // const sortedByAscendingScore = [...students].sort((a, b) => a.score - b.score);
+// // const names = sortedByAscendingScore.map(student => student.name);
 
-// console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
-// Проблема в том, что у нас появляются промежуточные переменные после каждой операции кроме финальной. Переменная sortedByAscendingScore лишняя и необходима только для хранения промежуточного результата.
+// // console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+// // Проблема в том, что у нас появляются промежуточные переменные после каждой операции кроме финальной. Переменная sortedByAscendingScore лишняя и необходима только для хранения промежуточного результата.
 
-// Избавиться от таких «мёртвых» переменных можно группируя вызовы методов в цепочки. Каждый следующий метод будет выполняться на результате работы предыдущего.
+// // Избавиться от таких «мёртвых» переменных можно группируя вызовы методов в цепочки. Каждый следующий метод будет выполняться на результате работы предыдущего.
 
-// const names = [...students]
-//   .sort((a, b) => a.score - b.score)
-//   .map(student => student.name);
+// // const names = [...students]
+// //   .sort((a, b) => a.score - b.score)
+// //   .map(student => student.name);
 
-// console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
-// Делаем копию исходного массива перед сортировкой.
-// На копии вызываем метод sort().
-// К результату работы метода sort() применяем метод map().
-// Переменной names присваивается результат работы метода map().
-// Получим сортированный по алфавиту массив уникальных посещаемых предметов.
+// // console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+// // Делаем копию исходного массива перед сортировкой.
+// // На копии вызываем метод sort().
+// // К результату работы метода sort() применяем метод map().
+// // Переменной names присваивается результат работы метода map().
+// // Получим сортированный по алфавиту массив уникальных посещаемых предметов.
 
-// const uniqueSortedCourses = students
-//   .flatMap(student => student.courses)
-//   .filter((course, index, array) => array.indexOf(course) === index)
-//   .sort((a, b) => a.localeCompare(b));
+// // const uniqueSortedCourses = students
+// //   .flatMap(student => student.courses)
+// //   .filter((course, index, array) => array.indexOf(course) === index)
+// //   .sort((a, b) => a.localeCompare(b));
 
-// console.log(uniqueSortedCourses); // ["biology", "science", "literature", "mathematics", "physics"]
-// На исходном массиве вызываем flatMap() и делаем разглаженный массив всех курсов.
-// К результату метода flatMap() применяем метод filter() для фильтрации уникальных элементов.
-// На результате метода filter() вызываем sort().
-// Переменной uniqueSortedCourses присваивается результат работы метода sort().
-// Цепочка методов может быть произвольной длины, но обычно не более 2-3 операций. Во-первых, перебирающие методы используются для сравнительно простых операций над коллекцией. Во-вторых, вызов каждого последующего метода, это дополнительный перебор массива, что при достаточном количестве, может сказаться на производительности.
+// // console.log(uniqueSortedCourses); // ["biology", "science", "literature", "mathematics", "physics"]
+// // На исходном массиве вызываем flatMap() и делаем разглаженный массив всех курсов.
+// // К результату метода flatMap() применяем метод filter() для фильтрации уникальных элементов.
+// // На результате метода filter() вызываем sort().
+// // Переменной uniqueSortedCourses присваивается результат работы метода sort().
+// // Цепочка методов может быть произвольной длины, но обычно не более 2-3 операций. Во-первых, перебирающие методы используются для сравнительно простых операций над коллекцией. Во-вторых, вызов каждого последующего метода, это дополнительный перебор массива, что при достаточном количестве, может сказаться на производительности.
 
-// Задание
-// Дополни код так, чтобы в переменной names получился массив имён авторов в алфавитном порядке, рейтинг книг которых больше значения переменной MIN_BOOK_RATING.
+// // Задание
+// // Дополни код так, чтобы в переменной names получился массив имён авторов в алфавитном порядке, рейтинг книг которых больше значения переменной MIN_BOOK_RATING.
 
-// Тесты
-// Объявлена переменная books
-// Значение переменной books это исходный массив объектов
-// Объявлена переменная MIN_BOOK_RATING
-// Значение переменной MIN_BOOK_RATING это число 8
-// Объявлена переменная names
-// Значение переменной names это массив ["Bernard Cornwell", "Howard Lovecraft", "Robert Sheckley"]
-// Нет объявленых переменных кроме books, MIN_BOOK_RATING и names
-// Используется цепочка методов filter, map, sort
-
+// // Тесты
+// // Объявлена переменная books
+// // Значение переменной books это исходный массив объектов
+// // Объявлена переменная MIN_BOOK_RATING
+// // Значение переменной MIN_BOOK_RATING это число 8
+// // Объявлена переменная names
+// // Значение переменной names это массив ["Bernard Cornwell", "Howard Lovecraft", "Robert Sheckley"]
+// // Нет объявленых переменных кроме books, MIN_BOOK_RATING и names
+// // Используется цепочка методов filter, map, sort
+// massive
 const books = [
   {
     title: 'The Last Kingdom',
@@ -2349,4 +2349,143 @@ const books = [
 const MIN_BOOK_RATING = 8;
 // Change code below this line
 
-const names = books;
+// const names = books
+//   .filter(({ rating }) => rating > MIN_BOOK_RATING)
+//   .map(({ author }) => author)
+//   .sort((a, b) => a.localeCompare(b));
+// console.log(names);
+
+// // 46
+// // Задача. Пользователи и друзья
+// // Задание
+// // Дополни функцию getNamesSortedByFriendCount(users) так,
+// чтобы она возвращала массив имён пользователей отсортированный по возрастанию количества их друзей(свойство friends).
+
+// // Тесты
+// // Объявлена переменная getNamesSortedByFriendCount
+// // Переменной getNamesSortedByFriendCount присвоена стрелочная функция с параметром (users)
+// // В теле функции используется цепочка методов
+// // Значение параметра users не изменяется
+// // Вызов функции с указанным массивом пользователей возвращает массив ["Moore Hensley", "Sharlene Bush", "Elma Head", "Sheree Anthony", "Ross Vazquez", "Carey Barr", "Blackburn Dotson"]
+// // Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
+
+// const getNamesSortedByFriendCount = (users) =>
+//   [...users]
+//     .sort(
+//       (minFriends, maxFriends) =>
+//         minFriends.friends.length - maxFriends.friends.length
+//     )
+//     .map(({ name }) => name);
+// console.log(getNamesSortedByFriendCount(users));
+
+// // 47
+// // Задача.Имена друзей
+// // Задание
+// // Дополни функцию getSortedFriends(users) так, чтобы она возвращала массив уникальных имён друзей (свойство friends) отсортированный по алфавиту .
+
+// // Тесты
+// // Объявлена переменная getSortedFriends
+// // Переменной getSortedFriends присвоена стрелочная функция с параметром (users)
+// // В теле функции используется цепочка методов в правильном порядке
+// // Значение параметра users не изменяется
+// // Вызов функции с указанным массивом пользователей возвращает массив ["Adrian Cross", "Aisha Tran", "Briana Decker", "Eddie Strong", "Goldie Gentry", "Jacklyn Lucas", "Jordan Sampson", "Linda Chapman", "Marilyn Mcintosh", "Naomi Buckner", "Padilla Garrison", "Sharron Pace", "Solomon Fokes"]
+// // Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
+// const getSortedFriends = (users) =>
+//   users
+//     .flatMap(({ friends }) => friends)
+//     .filter((friend, index, array) => array.indexOf(friend) === index)
+//     .sort((a, b) => a.localeCompare(b));
+// console.log(getSortedFriends(users));
+
+// // 48
+// // Задача.Общий баланс
+// // Задание
+// // Дополни функцию getTotalBalanceByGender(users, gender) так, чтобы она возвращала общий баланс пользователей (свойство balance), пол которых (свойство gender) совпадает со значением параметра gender.
+
+// // Тесты
+// // Объявлена переменная getTotalBalanceByGender
+// // Переменной getTotalBalanceByGender присвоена стрелочная функция с параметрами (users, gender)
+// // В теле функции используется цепочка методов в правильном порядке
+// // Значение параметра users не изменяется
+// // Если значение параметра gender это строка "male", функция возвращает число 12053
+// // Если значение параметра gender это строка "female", функция возвращает число 8863
+// // Вызов функции со случайными, но валидными аргументами, возвращает правильное значение
+// [
+//   {
+//     name: 'Moore Hensley',
+//     email: 'moorehensley@indexia.com',
+//     eyeColor: 'blue',
+//     friends: ['Sharron Pace'],
+//     isActive: false,
+//     balance: 2811,
+//     gender: 'male',
+//   },
+//   {
+//     name: 'Sharlene Bush',
+//     email: 'sharlenebush@tubesys.com',
+//     eyeColor: 'blue',
+//     friends: ['Briana Decker', 'Sharron Pace'],
+//     isActive: true,
+//     balance: 3821,
+//     gender: 'female',
+//   },
+//   {
+//     name: 'Ross Vazquez',
+//     email: 'rossvazquez@xinware.com',
+//     eyeColor: 'green',
+//     friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
+//     isActive: false,
+//     balance: 3793,
+//     gender: 'male',
+//   },
+//   {
+//     name: 'Elma Head',
+//     email: 'elmahead@omatom.com',
+//     eyeColor: 'green',
+//     friends: ['Goldie Gentry', 'Aisha Tran'],
+//     isActive: true,
+//     balance: 2278,
+//     gender: 'female',
+//   },
+//   {
+//     name: 'Carey Barr',
+//     email: 'careybarr@nurali.com',
+//     eyeColor: 'blue',
+//     friends: ['Jordan Sampson', 'Eddie Strong', 'Adrian Cross'],
+//     isActive: true,
+//     balance: 3951,
+//     gender: 'male',
+//   },
+//   {
+//     name: 'Blackburn Dotson',
+//     email: 'blackburndotson@furnigeer.com',
+//     eyeColor: 'brown',
+//     friends: [
+//       'Jacklyn Lucas',
+//       'Linda Chapman',
+//       'Adrian Cross',
+//       'Solomon Fokes',
+//     ],
+//     isActive: false,
+//     balance: 1498,
+//     gender: 'male',
+//   },
+//   {
+//     name: 'Sheree Anthony',
+//     email: 'shereeanthony@kog.com',
+//     eyeColor: 'brown',
+//     friends: ['Goldie Gentry', 'Briana Decker'],
+//     isActive: true,
+//     balance: 2764,
+//     gender: 'female',
+//   },
+// ];
+// const getTotalBalanceByGender = (users, gender) =>
+//   users
+//     .filter((user) => user.gender === gender)
+//     .map(({ balance }) => balance)
+//     .reduce((acc, balance) => acc + balance, 0);
+
+// console.log(getTotalBalanceByGender(users, 'female'));
+// console.log(getTotalBalanceByGender(users, 'male'));
+// console.log(getTotalBalanceByGender(users));
